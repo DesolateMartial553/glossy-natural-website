@@ -69,3 +69,36 @@
     window.scrollTo({top, behavior:'instant'});
   }
   window.addEventListener('load', fixHashScroll);
+
+  // Shop-by-category filter — hides non-matching cards and re-centres a
+  // lone card left dangling in the final row, at whatever column count
+  // the current breakpoint uses.
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const prodGrid = document.querySelector('.prod-grid');
+  function layoutProductGrid(){
+    if (!prodGrid) return;
+    const visible = Array.from(prodGrid.querySelectorAll('.prod-card'))
+      .filter(c => !c.classList.contains('filtered-out'));
+    visible.forEach(c => { c.style.gridColumn = ''; });
+    const cols = getComputedStyle(prodGrid).gridTemplateColumns.split(' ').length;
+    if (cols > 1 && visible.length % cols === 1) {
+      visible[visible.length - 1].style.gridColumn = String(Math.floor(cols / 2) + 1);
+    }
+  }
+  if (filterBtns.length && prodGrid) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        prodGrid.querySelectorAll('.prod-card').forEach(card => {
+          const cats = (card.dataset.cat || '').split(' ');
+          const show = filter === 'all' || cats.includes(filter);
+          card.classList.toggle('filtered-out', !show);
+        });
+        layoutProductGrid();
+      });
+    });
+    window.addEventListener('resize', layoutProductGrid);
+    layoutProductGrid();
+  }
