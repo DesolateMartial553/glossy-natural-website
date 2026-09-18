@@ -1,0 +1,13 @@
+{
+  "name": "Glossy Naturals",
+  "short_name": "Glossy Naturals",
+  "description": "Natural skincare, handcrafted in Enugu — order on WhatsApp.",
+  "start_url": "/glossy-natural-website/",
+  "display": "standalone",
+  "background_color": "#fff8f2",
+  "theme_color": "#d00145",
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

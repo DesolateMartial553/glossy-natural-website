@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://desolatemartial553.github.io/glossy-natural-website/sitemap.xml

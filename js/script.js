@@ -2,7 +2,8 @@
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburgerBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+    const open = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', String(open));
   });
 
   // Header-aware smooth scroll for all in-page anchor links (closes mobile menu too)
@@ -15,6 +16,7 @@
       if (!target) return;
       e.preventDefault();
       mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
       const headerHeight = header.offsetHeight;
       const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
       window.scrollTo({top, behavior:'smooth'});
@@ -67,6 +69,15 @@
     const headerHeight = header.offsetHeight;
     const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
     window.scrollTo({top, behavior:'instant'});
+    // Reveal anything the jump just landed on instead of waiting for the
+    // IntersectionObserver's async tick, which otherwise leaves the
+    // section blank for a moment on slower loads.
+    revealEls.forEach(el => {
+      if (!el.classList.contains('in') && isInViewport(el)) {
+        el.classList.add('in');
+        observer.unobserve(el);
+      }
+    });
   }
   window.addEventListener('load', fixHashScroll);
 
@@ -79,10 +90,14 @@
     if (!prodGrid) return;
     const visible = Array.from(prodGrid.querySelectorAll('.prod-card'))
       .filter(c => !c.classList.contains('filtered-out'));
-    visible.forEach(c => { c.style.gridColumn = ''; });
+    visible.forEach(c => { c.style.gridColumn = ''; c.style.justifySelf = ''; c.style.width = ''; });
     const cols = getComputedStyle(prodGrid).gridTemplateColumns.split(' ').length;
     if (cols > 1 && visible.length % cols === 1) {
-      visible[visible.length - 1].style.gridColumn = String(Math.floor(cols / 2) + 1);
+      const last = visible[visible.length - 1];
+      const gap = parseFloat(getComputedStyle(prodGrid).columnGap) || 0;
+      last.style.gridColumn = '1 / -1';
+      last.style.justifySelf = 'center';
+      last.style.width = `calc((100% - ${(cols - 1) * gap}px) / ${cols})`;
     }
   }
   if (filterBtns.length && prodGrid) {
