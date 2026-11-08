@@ -26,7 +26,7 @@
     overflow-x:hidden;
   }
   h1,h2,h3,h4{
-    font-family:'Playfair Display', Georgia, serif;
+    font-family:'Instrument Serif', 'Playfair Display', Georgia, serif;
     margin:0 0 .5em;
     line-height:1.15;
   }
@@ -86,7 +86,7 @@
     display:flex;
     align-items:center;
     gap:10px;
-    font-family:'Playfair Display', serif;
+    font-family:'Instrument Serif', 'Playfair Display', serif;
     font-weight:700;
     font-size:1.5rem;
     color:var(--pink);
@@ -342,13 +342,13 @@
     display:flex;align-items:center;justify-content:center;
   }
   .founder-photo .initials{
-    font-family:'Playfair Display',serif;
+    font-family:'Instrument Serif',serif;
     font-size:5rem;
     color:var(--pink);
     opacity:.7;
   }
   .founder-quote{
-    font-family:'Playfair Display',serif;
+    font-family:'Instrument Serif',serif;
     font-size:1.35rem;
     font-style:italic;
     color:var(--ink);
@@ -458,7 +458,7 @@
     display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
     padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  .foot-logo{font-family:'Playfair Display',serif;color:var(--white);font-size:1.3rem;font-weight:700;}
+  .foot-logo{font-family:'Instrument Serif', 'Playfair Display', serif;color:var(--white);font-size:1.3rem;font-weight:700;}
   .foot-links{display:flex;gap:26px;flex-wrap:wrap;}
   .foot-bottom{padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
   .disclaimer{font-size:.72rem;max-width:600px;margin-top:14px;}
