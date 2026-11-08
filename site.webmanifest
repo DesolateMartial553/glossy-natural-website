@@ -4,8 +4,8 @@
   "description": "Natural skincare, handcrafted in Enugu — order on WhatsApp.",
   "start_url": "/glossy-natural-website/",
   "display": "standalone",
-  "background_color": "#fff8f2",
-  "theme_color": "#d00145",
+  "background_color": "#FFF8EF",
+  "theme_color": "#FFF8EF",
   "icons": [
     { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any" },
     { "src": "apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
